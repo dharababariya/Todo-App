@@ -1,21 +1,32 @@
 <html>
- <head>
+    <head>
 
-    <title>Todo list</title>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
- </head>
-<body>
-    <div id="todo-table">
-        <form>
-                <input type="text" placeholder="add item here..." name="item" required>
-                <button type="submit">add item</button>
+        <title>Todo list</title>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    </head>
+    <body>
+        <div class="conttainer">
+            <h2>
+                A Simple to do list app
+            </h2>
 
-        </form>
-        <u>
-            <li>item1</li>
-            <li>item2</li>
-            <li>item3</li>
-        </u>
-    </div>
-</body>
+            <form action="/addtask" method="POST">
+                <input type="text" name="newtask" palseholder="add new task">
+                <button>Add Task</button>
+
+                <h2>Add Task</h2>
+                <% for( var i = 0; i < task.length; i++){ %>
+                    <li><input type="checkbox" name="check" value="<%= task[i] %>"/>
+                        <%= task[i] %>
+                    </li>
+                <% } %>
+
+                <button formaction="/removetask" type="submit">Remove</button>
+            </form>
+            <h2>Complate Task</h2>
+            % for(var i = 0; i < complete.length; i++){ %>
+                <li><input type="checkbox" checked><%= complete[i] %> </li>
+          <% } %>
+        </div>
+    </body>
 </html>
