@@ -1,6 +1,6 @@
 //add task
 
-const task = ["buy stock", "pratice with nodejs"];
+const task = ["Nodejs", "Javascript"];
 const complete = ["finish jquery"];
 
 module.exports = function (app) {
@@ -17,25 +17,24 @@ module.exports = function (app) {
         task.push(newTask);
         res.redirect('/');
     });
-    
- //remove task
-    
-        app.post('/removetask', function (req, res) {
 
-            
-            const completeTask = req.body.check;
+    //remove task
 
-            if (typeof completeTask === "string") {
-                complete.push(completeTask);
+    app.post('/removetask', function (req, res) {
 
-                task.splice(task.indexOf(completeTask), 1);
-            } else if (typeof completeTask === "object") {
-                for (var i = 0; i < completeTask.length; i++) {
-                    complete.push(completeTask[i]);
-                    task.splice(task.indexOf(completeTask[i]), 1);
-                }
+        const completeTask = req.body.check;
+
+        if (typeof completeTask === "string") {
+            complete.push(completeTask);
+
+            task.splice(task.indexOf(completeTask), 1);
+        } else if (typeof completeTask === "object") {
+            for (var i = 0; i < completeTask.length; i++) {
+                complete.push(completeTask[i]);
+                task.splice(task.indexOf(completeTask[i]), 1);
             }
-            res.redirect("/");
-        })
+        }
+        res.redirect("/");
+    })
 
-    }
+}
